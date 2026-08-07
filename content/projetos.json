@@ -10,6 +10,16 @@
       "link": "https://pedro-goes.itch.io/xadrez-com-poderes-insa",
       "serie": "2ª série",
       "segmento": "Ensino Médio"
+    },
+    {
+      "ano": "2026",
+      "link": "https://quiet-licorice-2dda02.netlify.app/",
+      "titulo": "Olimpíadas do conhecimento",
+      "slug": "olimpiadainsa2026edc",
+      "descricao": "As Olimpíadas do Conhecimento reuniram oito jogos desenvolvidos na oficina de Educação Digital e Computação (EDC). Cada equipe criou um jogo com tema inspirado no país homenageado, respeitando também a cor correspondente de sua equipe na competição.\n\nAlém da experiência prática com os jogos, o público pode conferir uma seção dedicada a curiosidades sobre cada país abordado.\n\nObservação: A competição contou com 9 equipes participantes. No entanto, um dos grupos desenvolveu o projeto em um formato diferente do solicitado, inviabilizando sua exposição.",
+      "imagem": "/content/uploads/gemini_generated_image_htrwvlhtrwvlhtrw.png",
+      "segmento": "Ensino Médio",
+      "serie": "3ª série"
     }
   ]
 }
