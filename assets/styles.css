@@ -1,88 +1,155 @@
-// EDC: Games & Apps — funções compartilhadas entre index.html e catalogo.html
+/* ============================================================
+   EDC: Games & Apps — estilos compartilhados
+   Usado por index.html, catalogo.html e pelas páginas de projeto
+   ============================================================ */
 
-const ORDEM_SERIE = ['8º ano', '9º ano', '1ª série', '2ª série', '3ª série', 'Não se aplica'];
-
-function escapeHtml(s){
-  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+:root, [data-tema="indigo"]{
+  --bg:#F7F7FB; --card:#FFFFFF; --line:#EAEAF2;
+  --ink:#14142B; --ink-dim:#5B5B72; --ink-faint:#9C9CB0;
+  --accent:#5B4FE8;
+  --fund:#D6336C; --fund-bg:#FFE3EC;
+  --medio:#048B78; --medio-bg:#C9F3EA;
+  --jogo:#E8590C; --jogo-bg:#FFE4D1;
+  --app:#1971C2; --app-bg:#D8EBFB;
+  --warn:#B8790B; --warn-bg:#FFE9C2;
 }
 
-// Formatação leve e segura: primeiro escapa tudo, depois libera só negrito, itálico e links.
-function formatarTexto(md){
-  if (!md) return '';
-  let s = escapeHtml(md);
-  s = s.replace(/\[(.+?)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  s = s.split(/\n{2,}/).map(par => `<p>${par.replace(/\n/g, '<br>')}</p>`).join('');
-  return s;
+[data-tema="aurora"]{
+  --bg:#FFF8F1; --card:#FFFFFF; --line:#F5E4D3;
+  --ink:#2B1B12; --ink-dim:#7A6252; --ink-faint:#B79C89;
+  --accent:#E8590C;
+  --fund:#C2255C; --fund-bg:#FBDAE7;
+  --medio:#2F9E44; --medio-bg:#DBF5E1;
+  --jogo:#D9480F; --jogo-bg:#FFE1CC;
+  --app:#1864AB; --app-bg:#D6E9FA;
+  --warn:#A6710A; --warn-bg:#FCE7B8;
 }
 
-// Versão sem formatação, cortada, para os cards (resumo curto).
-function resumirTexto(md, limite = 90){
-  if (!md) return '';
-  const plano = String(md).replace(/[*_#>\[\]()]/g, '').replace(/\s+/g, ' ').trim();
-  return plano.length > limite ? plano.slice(0, limite).trim() + '…' : plano;
+[data-tema="terminal"]{
+  --bg:#0D1321; --card:#141C30; --line:#2A3654;
+  --ink:#F4F1E9; --ink-dim:#C9CBD6; --ink-faint:#7C86A6;
+  --accent:#37E8C6;
+  --fund:#FF7FA8; --fund-bg:#3A1B2A;
+  --medio:#37E8C6; --medio-bg:#123832;
+  --jogo:#FF9F5A; --jogo-bg:#3A2412;
+  --app:#63B3F7; --app-bg:#122A42;
+  --warn:#F2B84B; --warn-bg:#3A2E12;
 }
 
-function aplicarTema(tema){
-  document.documentElement.setAttribute('data-tema', tema || 'indigo');
+*{ box-sizing: border-box; }
+body{
+  margin:0; background: var(--bg); color: var(--ink);
+  font-family: 'Manrope', sans-serif; line-height: 1.5;
+  transition: background .15s ease, color .15s ease;
+}
+img{ max-width:100%; display:block; }
+a{ color: inherit; }
+.wrap{ max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.font-display{ font-family: 'Baloo 2', sans-serif; }
+.font-mono{ font-family: 'JetBrains Mono', monospace; }
+
+/* nav */
+.site-nav{
+  position: sticky; top:0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 12px 20px; }
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand-mark{
+  width:32px; height:32px; border-radius:9px; background: var(--accent);
+  color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+}
+.brand-text{ font-size:15px; color: var(--ink); font-weight:700; }
+.nav-links{ display:flex; align-items:center; gap:20px; font-size:14px; }
+.nav-links a{ text-decoration:none; color: var(--ink); }
+.nav-search{
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: 13px;
+  width: 160px; background: var(--bg); color: var(--ink);
+}
+.nav-search:focus{ outline: none; border-color: var(--accent); }
+.voltar{ color: var(--accent); text-decoration:none; font-weight:700; font-size:14px; }
+
+/* hero */
+.hero{ padding: 40px 0 8px; }
+.eyebrow{ font-size:12px; color: var(--accent); letter-spacing: .04em; margin: 0 0 10px; }
+.hero h1{ font-size: clamp(28px, 4.5vw, 42px); line-height:1.15; margin: 0 0 14px; max-width: 24ch; }
+.hero .subtitulo{ color: var(--ink-dim); font-size: 16px; max-width: 100%; margin: 0; font-weight: 400; }
+.hero .subtitulo p{ margin: 0 0 10px; }
+.hero .subtitulo strong{ color: var(--ink); }
+.hero .subtitulo a{ color: var(--accent); text-decoration: underline; }
+
+/* seção genérica */
+.secao{ padding: 34px 0 6px; }
+.secao-titulo{ display:flex; align-items:center; gap:8px; margin: 0 0 16px; font-size: 17px; }
+
+/* carrossel fotos gerais */
+.fita{ display:flex; gap: 14px; overflow-x:auto; padding-bottom: 8px; scroll-snap-type: x proximity; }
+.foto-item{ flex: 0 0 auto; scroll-snap-align: start; }
+.foto-item img{ height: 190px; width: 280px; object-fit: cover; border-radius: 14px; background: var(--line); }
+.foto-legenda{ font-size: 12px; color: var(--ink-faint); margin: 6px 0 0; max-width: 280px; }
+
+/* cards de projeto — estilo ícone de app */
+.app-fita{ display:flex; gap: 14px; overflow-x:auto; padding-bottom: 8px; }
+.app-card{ flex: 0 0 128px; text-decoration:none; color: inherit; }
+.app-icone{
+  position: relative; width: 128px; height: 128px; border-radius: 22px;
+  background: var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.app-icone img{ width:100%; height:100%; object-fit: cover; }
+.app-badge{
+  position:absolute; top:7px; right:7px; background: rgba(0,0,0,.55); color:#fff;
+  font-size:10px; padding: 2px 7px; border-radius: 999px; display:flex; align-items:center; gap:3px;
+}
+.app-titulo{ font-family:'Baloo 2', sans-serif; font-size:13px; margin: 8px 0 2px; color: var(--ink); }
+.app-tags-mini{ display:flex; gap:5px; flex-wrap:wrap; }
+.app-tag{ font-size: 11px; font-weight: 700; margin:0; }
+.app-tag.fund{ color: var(--fund); }
+.app-tag.medio{ color: var(--medio); }
+.app-tag.na{ color: var(--ink-faint); }
+.app-chip{ font-size:10px; font-weight:700; padding: 1px 7px; border-radius: 999px; }
+.app-chip.jogo{ color: var(--jogo); background: var(--jogo-bg); }
+.app-chip.app{ color: var(--app); background: var(--app-bg); }
+.app-aviso{ font-size: 10.5px; color: var(--warn); margin: 2px 0 0; }
+
+/* CTA catálogo */
+.cta-catalogo{
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+  padding: 26px; display:flex; align-items:center; justify-content:space-between; gap: 16px; flex-wrap: wrap;
+  margin: 34px 0 40px;
+}
+.cta-catalogo h3{ font-family:'Baloo 2', sans-serif; margin: 0 0 4px; font-size: 17px; }
+.cta-catalogo p{ margin: 0; color: var(--ink-dim); font-size: 13.5px; }
+.btn-primario{
+  background: var(--accent); color: #fff; text-decoration:none; font-weight: 700; font-size: 14px;
+  padding: 12px 22px; border-radius: 999px; white-space: nowrap; border: none; cursor: pointer;
 }
 
-async function carregarDados(){
-  const [projetosRes, configRes, statsRes] = await Promise.allSettled([
-    fetch('/content/projetos.json', { cache: 'no-store' }).then(r => r.json()),
-    fetch('/content/config.json', { cache: 'no-store' }).then(r => r.json()),
-    fetch('/api/stats', { cache: 'no-store' }).then(r => r.json())
-  ]);
-  return {
-    projetos: projetosRes.status === 'fulfilled' ? (projetosRes.value.projetos || []) : [],
-    config: configRes.status === 'fulfilled' ? configRes.value : {},
-    cliques: statsRes.status === 'fulfilled' ? (statsRes.value.cliques || {}) : {},
-    status: statsRes.status === 'fulfilled' ? (statsRes.value.status || {}) : {}
-  };
+/* catálogo / filtros */
+.filtros{ display:flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
+.filtros select{
+  border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 14px;
+  font-size: 13px; color: var(--ink-dim);
 }
-
-function criarAppCard(p, status, { badge } = {}){
-  const tpl = document.getElementById('tpl-app-card');
-  const node = tpl.content.cloneNode(true);
-  const a = node.querySelector('.app-card');
-  a.href = `/projetos/${p.slug}`;
-
-  const img = node.querySelector('.app-icone img');
-  if (p.imagem){ img.src = p.imagem; img.alt = p.titulo || ''; }
-  else { img.remove(); }
-
-  if (badge){
-    const b = node.querySelector('.app-badge');
-    b.hidden = false;
-    b.textContent = badge;
-  }
-
-  node.querySelector('.app-titulo').textContent = p.titulo || 'Projeto sem título';
-
-  const serieTag = node.querySelector('.app-tag');
-  if (p.serie){
-    serieTag.textContent = p.serie;
-    const classe = p.segmento === 'Ensino Fundamental' ? 'fund' : p.segmento === 'Ensino Médio' ? 'medio' : 'na';
-    serieTag.classList.add(classe);
-  } else {
-    serieTag.remove();
-  }
-
-  const chip = node.querySelector('.app-chip');
-  if (p.categoria){
-    chip.textContent = p.categoria;
-    chip.classList.add(p.categoria === 'Jogos' ? 'jogo' : 'app');
-  } else {
-    chip.remove();
-  }
-
-  const info = status[p.slug];
-  if (info && info.broken){
-    node.querySelector('.app-aviso').hidden = false;
-  } else {
-    node.querySelector('.app-aviso').remove();
-  }
-
-  return node;
+.filtros select:focus{ outline: none; border-color: var(--accent); }
+.pill-limpar{ border: none; background: transparent; color: var(--ink-faint); font-size: 13px; cursor: pointer; }
+.grid-catalogo{ display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.grid-catalogo .app-card{ width: auto; }
+.grid-catalogo .app-icone{ width: 100%; aspect-ratio: 1; height: auto; }
+.carregar-mais{
+  display:block; margin: 22px auto 10px; background: var(--card); border: 1px solid var(--line);
+  color: var(--ink); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 999px; cursor: pointer;
 }
+.carregar-mais:hover{ border-color: var(--accent); color: var(--accent); }
+.vazio{ color: var(--ink-faint); font-size: 14px; text-align:center; padding: 30px 0; }
+
+/* rodapé */
+.rodape{
+  border-top: 1px solid var(--line); margin-top: 50px; padding: 22px 0 40px;
+  display:flex; justify-content:space-between; flex-wrap: wrap; gap: 8px;
+  font-size: 12.5px; color: var(--ink-faint);
+}
+.rodape a{ text-decoration: none; color: var(--ink-faint); }
+.rodape a:hover{ color: var(--accent); }
+
+[hidden]{ display:none !important; }
+@media (max-width: 640px){ .nav-search{ display:none; } }
