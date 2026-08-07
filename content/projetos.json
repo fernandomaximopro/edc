@@ -6,6 +6,7 @@
       "descricao": "Xadrez com Poderes é uma releitura do clássico jogo de xadrez, adicionando habilidades especiais que tornam cada partida única e estratégica. Além das regras tradicionais do xadrez, os jogadores podem utilizar poderes que mudam o rumo da partida, exigindo criatividade, planejamento e adaptação.",
       "slug": "xadrezcompoderes",
       "imagem": "/content/uploads/whatsapp-image-2026-08-06-at-21.41.29.jpeg",
+      "categoria": "Jogos",
       "titulo": "Xadrez com Poderes",
       "link": "https://pedro-goes.itch.io/xadrez-com-poderes-insa",
       "serie": "2ª série",
@@ -13,13 +14,15 @@
     },
     {
       "ano": "2026",
-      "link": "https://quiet-licorice-2dda02.netlify.app/",
-      "titulo": "Olimpíadas do conhecimento",
-      "slug": "olimpiadainsa2026edc",
+      "dataPublicacao": "2026-08-07",
       "descricao": "As Olimpíadas do Conhecimento reuniram oito jogos desenvolvidos na oficina de Educação Digital e Computação (EDC). Cada equipe criou um jogo com tema inspirado no país homenageado, respeitando também a cor correspondente de sua equipe na competição.\n\nAlém da experiência prática com os jogos, o público pode conferir uma seção dedicada a curiosidades sobre cada país abordado.\n\nObservação: A competição contou com 9 equipes participantes. No entanto, um dos grupos desenvolveu o projeto em um formato diferente do solicitado, inviabilizando sua exposição.",
+      "slug": "olimpiadainsa2026edc",
       "imagem": "/content/uploads/gemini_generated_image_htrwvlhtrwvlhtrw.png",
-      "segmento": "Ensino Médio",
-      "serie": "3ª série"
+      "categoria": "Jogos",
+      "titulo": "Olimpíadas do conhecimento",
+      "link": "https://quiet-licorice-2dda02.netlify.app/",
+      "serie": "Não se aplica",
+      "segmento": "Não se aplica"
     }
   ]
 }
