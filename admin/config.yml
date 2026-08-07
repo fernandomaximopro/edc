@@ -20,15 +20,26 @@ collections:
             name: "projetos"
             widget: "list"
             label_singular: "Projeto"
-            summary: "{{titulo}} — {{ano}} · {{serie}}"
+            summary: "{{titulo}} — {{categoria}} · {{serie}}"
             fields:
-              - { label: "Título do projeto", name: "titulo", widget: "string" }
+              - label: "Título do projeto"
+                name: "titulo"
+                widget: "string"
+                hint: "Só o nome do projeto — curto. Ex: 'Corrida espacial'. Texto mais longo vai no campo Descrição."
               - label: "Slug (usado no link do projeto)"
                 name: "slug"
                 widget: "string"
                 hint: "Sem espaços, sem acentos, sem maiúsculas. Ex: corrida-espacial. Vira o link seusite.com/projetos/corrida-espacial"
                 pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "Use só letras minúsculas, números e hífens, sem espaços ou acentos"]
-              - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - label: "Categoria"
+                name: "categoria"
+                widget: "select"
+                options: ["Jogos", "App"]
+              - label: "Descrição"
+                name: "descricao"
+                widget: "text"
+                required: false
+                hint: "Pode usar **negrito**, *itálico* e [texto do link](https://...)"
               - label: "Ano letivo"
                 name: "ano"
                 widget: "select"
@@ -37,11 +48,11 @@ collections:
               - label: "Segmento"
                 name: "segmento"
                 widget: "select"
-                options: ["Ensino Fundamental", "Ensino Médio"]
+                options: ["Ensino Fundamental", "Ensino Médio", "Não se aplica"]
               - label: "Ano escolar"
                 name: "serie"
                 widget: "select"
-                options: ["8º ano", "9º ano", "1ª série", "2ª série", "3ª série"]
+                options: ["8º ano", "9º ano", "1ª série", "2ª série", "3ª série", "Não se aplica"]
               - label: "Data de publicação"
                 name: "dataPublicacao"
                 widget: "datetime"
@@ -74,12 +85,30 @@ collections:
     label: "Configurações do site"
     files:
       - file: "content/config.json"
-        label: "Textos e carrossel geral"
+        label: "Textos, aparência e carrossel geral"
         name: "config"
         fields:
-          - { label: "Texto pequeno acima do título (hero)", name: "heroEyebrow", widget: "string", required: false }
-          - { label: "Título principal (hero)", name: "heroTitulo", widget: "string" }
-          - { label: "Subtítulo (hero)", name: "heroSubtitulo", widget: "text", required: false }
+          - label: "Aparência do site"
+            name: "tema"
+            widget: "select"
+            default: "indigo"
+            options:
+              - { label: "Índigo (padrão — claro, roxo e verde-água)", value: "indigo" }
+              - { label: "Aurora (claro, tons quentes de laranja)", value: "aurora" }
+              - { label: "Terminal (escuro, estilo código)", value: "terminal" }
+          - label: "Texto pequeno acima do título (hero)"
+            name: "heroEyebrow"
+            widget: "string"
+            required: false
+          - label: "Título principal (hero)"
+            name: "heroTitulo"
+            widget: "string"
+            hint: "Uma frase curta e chamativa. Ex: 'Jogos e apps criados pelos nossos alunos'. NÃO use este campo para um texto de apresentação longo — use o campo Subtítulo abaixo."
+          - label: "Subtítulo / texto de apresentação (hero)"
+            name: "heroSubtitulo"
+            widget: "text"
+            required: false
+            hint: "Aqui pode escrever um texto mais longo, de apresentação do site. Pode usar **negrito**, *itálico* e [texto do link](https://...). Para separar em parágrafos, deixe uma linha em branco entre eles."
           - { label: "Título da seção de fotos gerais", name: "tituloCarrosselFotos", widget: "string", default: "Bastidores da turma" }
           - { label: "Título da seção 'mais acessados'", name: "tituloMaisAcessados", widget: "string", default: "Mais acessados" }
           - { label: "Título da seção 'lançamentos'", name: "tituloLancamentos", widget: "string", default: "Lançamentos recentes" }
