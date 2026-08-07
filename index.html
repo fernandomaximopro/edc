@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDC: Games &amp; Apps — Portfólio de projetos</title>
+<meta name="description" content="Jogos e aplicativos criados por alunos na disciplina de Educação Digital e Computação.">
+<meta property="og:title" content="EDC: Games & Apps">
+<meta property="og:description" content="Jogos e aplicativos criados por alunos na disciplina de Educação Digital e Computação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+:root{
+  --bg: #F7F7FB;
+  --card: #FFFFFF;
+  --line: #EAEAF2;
+  --ink: #14142B;
+  --ink-dim: #5B5B72;
+  --ink-faint: #9C9CB0;
+  --indigo: #5B4FE8;
+  --rosa: #D6336C;
+  --rosa-bg: #FFE3EC;
+  --teal: #048B78;
+  --teal-bg: #C9F3EA;
+  --amber: #B8790B;
+  --amber-bg: #FFE9C2;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+}
+*{ box-sizing: border-box; }
+body{
+  margin:0; background: var(--bg); color: var(--ink);
+  font-family: 'Manrope', sans-serif; line-height: 1.5;
+}
+img{ max-width:100%; display:block; }
+a{ color: inherit; }
+.wrap{ max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.font-display{ font-family: 'Baloo 2', sans-serif; }
+.font-mono{ font-family: 'JetBrains Mono', monospace; }
+
+/* nav */
+.site-nav{
+  position: sticky; top:0; z-index: 20; background: rgba(255,255,255,.92);
+  backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 12px 20px; }
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand-mark{
+  width:32px; height:32px; border-radius:9px; background: var(--indigo);
+  color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+}
+.brand-text{ font-size:15px; color: var(--ink); font-weight:700; }
+.nav-links{ display:flex; align-items:center; gap:20px; font-size:14px; }
+.nav-links a{ text-decoration:none; color: var(--ink); }
+.nav-search{
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: 13px;
+  width: 160px; background: var(--bg);
+}
+.nav-search:focus{ outline: none; border-color: var(--indigo); }
+
+/* hero */
+.hero{ padding: 40px 0 8px; }
+.eyebrow{ font-size:12px; color: var(--indigo); letter-spacing: .04em; margin: 0 0 10px; }
+.hero h1{ font-size: clamp(28px, 4.5vw, 42px); line-height:1.15; margin: 0 0 12px; max-width: 20ch; }
+.hero p{ color: var(--ink-dim); font-size: 15px; max-width: 52ch; margin: 0; }
+
+/* seção genérica */
+.secao{ padding: 34px 0 6px; }
+.secao-titulo{ display:flex; align-items:center; gap:8px; margin: 0 0 16px; font-size: 17px; }
+
+/* carrossel fotos gerais */
+.fita{ display:flex; gap: 14px; overflow-x:auto; padding-bottom: 8px; scroll-snap-type: x proximity; }
+.fita::-webkit-scrollbar{ height: 6px; }
+.foto-item{ flex: 0 0 auto; scroll-snap-align: start; }
+.foto-item img{
+  height: 190px; width: 280px; object-fit: cover; border-radius: var(--radius-md); background: var(--line);
+}
+.foto-legenda{ font-size: 12px; color: var(--ink-faint); margin: 6px 0 0; max-width: 280px; }
+
+/* cards de projeto — estilo ícone de app */
+.app-fita{ display:flex; gap: 14px; overflow-x:auto; padding-bottom: 8px; }
+.app-card{ flex: 0 0 128px; text-decoration:none; color: inherit; }
+.app-icone{
+  position: relative; width: 128px; height: 128px; border-radius: 22px;
+  background: var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.app-icone img{ width:100%; height:100%; object-fit: cover; }
+.app-badge{
+  position:absolute; top:7px; right:7px; background: rgba(20,20,43,.82); color:#fff;
+  font-size:10px; padding: 2px 7px; border-radius: 999px; display:flex; align-items:center; gap:3px;
+}
+.app-titulo{ font-family:'Baloo 2', sans-serif; font-size:13px; margin: 8px 0 2px; }
+.app-tag{ font-size: 11px; font-weight: 700; margin:0; }
+.app-tag.fund{ color: var(--rosa); }
+.app-tag.medio{ color: var(--teal); }
+.app-aviso{ font-size: 10.5px; color: var(--amber); margin: 2px 0 0; }
+
+/* catálogo */
+.filtros{
+  display:flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px;
+}
+.filtros select{
+  border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 14px;
+  font-size: 13px; color: var(--ink-dim);
+}
+.filtros select:focus{ outline: none; border-color: var(--indigo); }
+.pill-limpar{
+  border: none; background: transparent; color: var(--ink-faint); font-size: 13px; cursor: pointer;
+}
+.grid-catalogo{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;
+}
+.grid-catalogo .app-card{ width: auto; }
+.grid-catalogo .app-icone{ width: 100%; aspect-ratio: 1; height: auto; }
+
+.carregar-mais{
+  display:block; margin: 22px auto 10px; background: #fff; border: 1px solid var(--line);
+  color: var(--ink); font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 999px; cursor: pointer;
+}
+.carregar-mais:hover{ border-color: var(--indigo); color: var(--indigo); }
+
+.vazio{ color: var(--ink-faint); font-size: 14px; text-align:center; padding: 30px 0; }
+
+/* footer */
+.rodape{
+  border-top: 1px solid var(--line); margin-top: 50px; padding: 22px 0 40px;
+  display:flex; justify-content:space-between; flex-wrap: wrap; gap: 8px;
+  font-size: 12.5px; color: var(--ink-faint);
+}
+.rodape a{ text-decoration: none; color: var(--ink-faint); }
+.rodape a:hover{ color: var(--indigo); }
+
+[hidden]{ display:none !important; }
+
+@media (max-width: 640px){
+  .nav-search{ display:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark font-display">EDC</span>
+      <span class="brand-text font-display">Games &amp; Apps</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#catalogo">Projetos</a>
+      <input class="nav-search" id="busca-topo" type="search" placeholder="Buscar…">
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <p class="eyebrow font-mono" id="hero-eyebrow"></p>
+  <h1 class="font-display" id="hero-titulo"></h1>
+  <p id="hero-subtitulo"></p>
+</section>
+
+<section class="secao wrap" id="secao-fotos" hidden>
+  <h2 class="secao-titulo font-display" id="titulo-fotos"></h2>
+  <div class="fita" id="fita-fotos"></div>
+</section>
+
+<section class="secao wrap" id="secao-acessados" hidden>
+  <h2 class="secao-titulo font-display"><i>🔥</i><span id="titulo-acessados"></span></h2>
+  <div class="app-fita" id="fita-acessados"></div>
+</section>
+
+<section class="secao wrap" id="secao-lancamentos" hidden>
+  <h2 class="secao-titulo font-display" id="titulo-lancamentos"></h2>
+  <div class="app-fita" id="fita-lancamentos"></div>
+</section>
+
+<section class="secao wrap" id="catalogo">
+  <h2 class="secao-titulo font-display" id="titulo-catalogo"></h2>
+  <div class="filtros">
+    <select id="f-ano"><option value="">Todos os anos</option></select>
+    <select id="f-segmento">
+      <option value="">Todos os segmentos</option>
+      <option value="Ensino Fundamental">Ensino Fundamental</option>
+      <option value="Ensino Médio">Ensino Médio</option>
+    </select>
+    <select id="f-serie"><option value="">Todas as séries</option></select>
+    <button class="pill-limpar" id="f-limpar" type="button">Limpar filtros</button>
+  </div>
+  <div class="grid-catalogo" id="grid-catalogo"></div>
+  <p class="vazio" id="catalogo-vazio" hidden>Nenhum projeto encontrado com esses filtros.</p>
+  <button class="carregar-mais" id="btn-carregar-mais" type="button" hidden>Carregar mais</button>
+</section>
+
+<footer class="rodape wrap">
+  <span>EDC: Games &amp; Apps — portfólio de turma</span>
+  <a href="/admin/">Área do professor</a>
+</footer>
+
+<template id="tpl-app-card">
+  <a class="app-card">
+    <div class="app-icone">
+      <img loading="lazy" alt="">
+      <span class="app-badge font-mono" hidden></span>
+    </div>
+    <p class="app-titulo"></p>
+    <p class="app-tag"></p>
+    <p class="app-aviso" hidden>⚠ link pode estar indisponível</p>
+  </a>
+</template>
+
+<script>
+const ORDEM_SERIE = ['8º ano', '9º ano', '1ª série', '2ª série', '3ª série'];
+const PAGINA = 9;
+
+const st = { projetos: [], config: {}, cliques: {}, status: {}, filtrados: [], mostrados: PAGINA };
+
+async function carregarTudo(){
+  const [projetosRes, configRes, statsRes] = await Promise.allSettled([
+    fetch('/content/projetos.json', { cache: 'no-store' }).then(r => r.json()),
+    fetch('/content/config.json', { cache: 'no-store' }).then(r => r.json()),
+    fetch('/api/stats', { cache: 'no-store' }).then(r => r.json())
+  ]);
+
+  st.projetos = projetosRes.status === 'fulfilled' ? (projetosRes.value.projetos || []) : [];
+  st.config = configRes.status === 'fulfilled' ? configRes.value : {};
+  st.cliques = statsRes.status === 'fulfilled' ? (statsRes.value.cliques || {}) : {};
+  st.status = statsRes.status === 'fulfilled' ? (statsRes.value.status || {}) : {};
+
+  montarTextos();
+  montarFotos();
+  montarMaisAcessados();
+  montarLancamentos();
+  montarFiltrosCatalogo();
+  aplicarFiltros();
+  ligarEventos();
+}
+
+function montarTextos(){
+  const c = st.config;
+  setTexto('hero-eyebrow', c.heroEyebrow);
+  setTexto('hero-titulo', c.heroTitulo || 'Projetos da turma');
+  setTexto('hero-subtitulo', c.heroSubtitulo);
+  setTexto('titulo-fotos', c.tituloCarrosselFotos || 'Bastidores da turma');
+  setTexto('titulo-acessados', c.tituloMaisAcessados || 'Mais acessados');
+  setTexto('titulo-lancamentos', c.tituloLancamentos || 'Lançamentos recentes');
+  setTexto('titulo-catalogo', c.tituloCatalogo || 'Catálogo completo');
+}
+function setTexto(id, valor){
+  const el = document.getElementById(id);
+  if (!valor){ el.remove(); return; }
+  el.textContent = valor;
+}
+
+function montarFotos(){
+  const fotos = (st.config.carrosselFotos || []).filter(f => f && f.imagem);
+  if (!fotos.length) return;
+  document.getElementById('secao-fotos').hidden = false;
+  const fita = document.getElementById('fita-fotos');
+  fotos.forEach(f => {
+    const div = document.createElement('div');
+    div.className = 'foto-item';
+    div.innerHTML = `<img src="${f.imagem}" alt="">` + (f.legenda ? `<p class="foto-legenda">${escapeHtml(f.legenda)}</p>` : '');
+    fita.appendChild(div);
+  });
+}
+
+function montarMaisAcessados(){
+  const comCliques = st.projetos
+    .filter(p => (st.cliques[p.slug] || 0) > 0)
+    .sort((a,b) => (st.cliques[b.slug]||0) - (st.cliques[a.slug]||0))
+    .slice(0, 8);
+  if (!comCliques.length) return;
+  document.getElementById('secao-acessados').hidden = false;
+  const fita = document.getElementById('fita-acessados');
+  comCliques.forEach(p => fita.appendChild(criarAppCard(p, { badge: st.cliques[p.slug] })));
+}
+
+function montarLancamentos(){
+  const recentes = st.projetos.slice().sort((a,b) => (b.dataPublicacao||'').localeCompare(a.dataPublicacao||'')).slice(0, 8);
+  if (!recentes.length) return;
+  document.getElementById('secao-lancamentos').hidden = false;
+  const fita = document.getElementById('fita-lancamentos');
+  recentes.forEach(p => fita.appendChild(criarAppCard(p, {})));
+}
+
+function montarFiltrosCatalogo(){
+  const anos = [...new Set(st.projetos.map(p => p.ano).filter(Boolean))].sort().reverse();
+  const fAno = document.getElementById('f-ano');
+  anos.forEach(a => fAno.appendChild(new Option(a, a)));
+
+  const series = [...new Set(st.projetos.map(p => p.serie).filter(Boolean))]
+    .sort((a,b) => ORDEM_SERIE.indexOf(a) - ORDEM_SERIE.indexOf(b));
+  const fSerie = document.getElementById('f-serie');
+  series.forEach(s => fSerie.appendChild(new Option(s, s)));
+}
+
+function aplicarFiltros(){
+  const termo = (document.getElementById('busca-topo').value || '').trim().toLowerCase();
+  const ano = document.getElementById('f-ano').value;
+  const segmento = document.getElementById('f-segmento').value;
+  const serie = document.getElementById('f-serie').value;
+
+  st.filtrados = st.projetos.filter(p => {
+    if (ano && p.ano !== ano) return false;
+    if (segmento && p.segmento !== segmento) return false;
+    if (serie && p.serie !== serie) return false;
+    if (termo){
+      const alvo = `${p.titulo||''} ${p.descricao||''} ${p.alunos||''}`.toLowerCase();
+      if (!alvo.includes(termo)) return false;
+    }
+    return true;
+  });
+  st.mostrados = PAGINA;
+  renderCatalogo();
+}
+
+function renderCatalogo(){
+  const grid = document.getElementById('grid-catalogo');
+  grid.innerHTML = '';
+  const fatia = st.filtrados.slice(0, st.mostrados);
+  fatia.forEach(p => grid.appendChild(criarAppCard(p, {})));
+
+  document.getElementById('catalogo-vazio').hidden = st.filtrados.length > 0;
+  document.getElementById('btn-carregar-mais').hidden = st.mostrados >= st.filtrados.length;
+}
+
+function criarAppCard(p, { badge } = {}){
+  const tpl = document.getElementById('tpl-app-card');
+  const node = tpl.content.cloneNode(true);
+  const a = node.querySelector('.app-card');
+  a.href = `/projetos/${p.slug}`;
+
+  const img = node.querySelector('.app-icone img');
+  if (p.imagem){ img.src = p.imagem; img.alt = p.titulo || ''; }
+  else { img.remove(); }
+
+  if (badge){
+    const b = node.querySelector('.app-badge');
+    b.hidden = false;
+    b.textContent = badge;
+  }
+
+  node.querySelector('.app-titulo').textContent = p.titulo || 'Projeto sem título';
+
+  const tag = node.querySelector('.app-tag');
+  if (p.serie){
+    tag.textContent = p.serie;
+    tag.classList.add(p.segmento === 'Ensino Fundamental' ? 'fund' : 'medio');
+  } else {
+    tag.remove();
+  }
+
+  const statusInfo = st.status[p.slug];
+  if (statusInfo && statusInfo.broken){
+    node.querySelector('.app-aviso').hidden = false;
+  } else {
+    node.querySelector('.app-aviso').remove();
+  }
+
+  return node;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function limparFiltros(){
+  document.getElementById('busca-topo').value = '';
+  document.getElementById('f-ano').value = '';
+  document.getElementById('f-segmento').value = '';
+  document.getElementById('f-serie').value = '';
+  aplicarFiltros();
+}
+
+function ligarEventos(){
+  ['busca-topo','f-ano','f-segmento','f-serie'].forEach(id => {
+    document.getElementById(id).addEventListener('input', aplicarFiltros);
+    document.getElementById(id).addEventListener('change', aplicarFiltros);
+  });
+  document.getElementById('f-limpar').addEventListener('click', limparFiltros);
+  document.getElementById('btn-carregar-mais').addEventListener('click', () => {
+    st.mostrados += PAGINA;
+    renderCatalogo();
+  });
+}
+
+carregarTudo();
+</script>
+</body>
+</html>

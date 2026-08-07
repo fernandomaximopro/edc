@@ -1,0 +1,9 @@
+[build]
+  command = "npm install"
+  publish = "."
+  functions = "netlify/functions"
+
+[[headers]]
+  for = "/content/*.json"
+  [headers.values]
+    Cache-Control = "no-cache"

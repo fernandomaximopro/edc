@@ -1,0 +1,93 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: simple
+media_folder: "content/uploads"
+public_folder: "/content/uploads"
+locale: "pt"
+
+collections:
+  - name: "projetos"
+    label: "Projetos"
+    description: "Todos os jogos e apps publicados no portfólio"
+    files:
+      - file: "content/projetos.json"
+        label: "Lista de projetos"
+        name: "projetos"
+        fields:
+          - label: "Projetos"
+            name: "projetos"
+            widget: "list"
+            label_singular: "Projeto"
+            summary: "{{titulo}} — {{ano}} · {{serie}}"
+            fields:
+              - { label: "Título do projeto", name: "titulo", widget: "string" }
+              - label: "Slug (usado no link do projeto)"
+                name: "slug"
+                widget: "string"
+                hint: "Sem espaços, sem acentos, sem maiúsculas. Ex: corrida-espacial. Vira o link seusite.com/projetos/corrida-espacial"
+                pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "Use só letras minúsculas, números e hífens, sem espaços ou acentos"]
+              - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - label: "Ano letivo"
+                name: "ano"
+                widget: "select"
+                default: "2026"
+                options: ["2026", "2027", "2028", "2029", "2030", "2031", "2032"]
+              - label: "Segmento"
+                name: "segmento"
+                widget: "select"
+                options: ["Ensino Fundamental", "Ensino Médio"]
+              - label: "Ano escolar"
+                name: "serie"
+                widget: "select"
+                options: ["8º ano", "9º ano", "1ª série", "2ª série", "3ª série"]
+              - label: "Data de publicação"
+                name: "dataPublicacao"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "DD/MM/YYYY"
+                time_format: false
+                required: false
+                hint: "Usada para ordenar os 'Lançamentos recentes'"
+              - label: "Imagem de capa"
+                name: "imagem"
+                widget: "image"
+                required: false
+              - label: "Fotos adicionais (galeria do projeto)"
+                name: "galeria"
+                widget: "list"
+                required: false
+                field: { label: "Foto", name: "foto", widget: "image" }
+              - label: "Link do projeto"
+                name: "link"
+                widget: "string"
+                required: false
+                hint: "URL completa do site/app do aluno (ex: https://meuprojetoaluno.netlify.app)"
+              - label: "Alunos / turma"
+                name: "alunos"
+                widget: "string"
+                required: false
+                hint: "Ex.: Turma 8ºA — ou nomes, conforme sua avaliação de cada caso"
+
+  - name: "config"
+    label: "Configurações do site"
+    files:
+      - file: "content/config.json"
+        label: "Textos e carrossel geral"
+        name: "config"
+        fields:
+          - { label: "Texto pequeno acima do título (hero)", name: "heroEyebrow", widget: "string", required: false }
+          - { label: "Título principal (hero)", name: "heroTitulo", widget: "string" }
+          - { label: "Subtítulo (hero)", name: "heroSubtitulo", widget: "text", required: false }
+          - { label: "Título da seção de fotos gerais", name: "tituloCarrosselFotos", widget: "string", default: "Bastidores da turma" }
+          - { label: "Título da seção 'mais acessados'", name: "tituloMaisAcessados", widget: "string", default: "Mais acessados" }
+          - { label: "Título da seção 'lançamentos'", name: "tituloLancamentos", widget: "string", default: "Lançamentos recentes" }
+          - { label: "Título do catálogo completo", name: "tituloCatalogo", widget: "string", default: "Catálogo completo" }
+          - label: "Fotos gerais (bastidores da turma, sem identificar alunos)"
+            name: "carrosselFotos"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Foto", name: "imagem", widget: "image" }
+              - { label: "Legenda", name: "legenda", widget: "string", required: false }
