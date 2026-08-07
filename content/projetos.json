@@ -1,43 +1,15 @@
 {
   "projetos": [
     {
-      "titulo": "Corrida espacial",
-      "slug": "corrida-espacial",
-      "descricao": "Jogo em Scratch sobre exploração espacial, com lógica condicional e variáveis de pontuação.",
       "ano": "2026",
-      "segmento": "Ensino Fundamental",
-      "serie": "8º ano",
-      "imagem": "",
-      "galeria": [],
-      "link": "",
-      "alunos": "Turma 8ºA",
-      "dataPublicacao": "2026-03-10"
-    },
-    {
-      "titulo": "Quiz de história",
-      "slug": "quiz-de-historia",
-      "descricao": "Aplicativo de perguntas e respostas sobre história do Brasil, com ranking de pontuação.",
-      "ano": "2026",
-      "segmento": "Ensino Médio",
+      "dataPublicacao": "2026-08-06",
+      "descricao": "Xadrez com Poderes é uma releitura do clássico jogo de xadrez, adicionando habilidades especiais que tornam cada partida única e estratégica. Além das regras tradicionais do xadrez, os jogadores podem utilizar poderes que mudam o rumo da partida, exigindo criatividade, planejamento e adaptação.",
+      "slug": "xadrex-com-poderes",
+      "imagem": "/content/uploads/whatsapp-image-2026-08-06-at-21.41.29.jpeg",
+      "titulo": "Xadrez com Poderes",
+      "link": "https://pedro-goes.itch.io/xadrez-com-poderes-insa",
       "serie": "2ª série",
-      "imagem": "",
-      "galeria": [],
-      "link": "",
-      "alunos": "Turma 2ºB",
-      "dataPublicacao": "2026-04-02"
-    },
-    {
-      "titulo": "Mapa do bairro",
-      "slug": "mapa-do-bairro",
-      "descricao": "Mapa interativo com dados de mobilidade urbana coletados pelos próprios alunos.",
-      "ano": "2026",
-      "segmento": "Ensino Fundamental",
-      "serie": "9º ano",
-      "imagem": "",
-      "galeria": [],
-      "link": "",
-      "alunos": "Turma 9ºC",
-      "dataPublicacao": "2026-05-15"
+      "segmento": "Ensino Médio"
     }
   ]
 }
